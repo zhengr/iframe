@@ -1,26 +1,17 @@
-
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<style>
-  body, html {
-    margin: 0;
-    padding: 0;
-    overflow: hidden; /* 隐藏主页面的滚动条 */
-  }
-  iframe {
-    width: 100%;
-    border: none;
-  }
-</style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>嵌入外部网页示例</title>
 </head>
 <body>
-<iframe id="myframe" src="https://mixtao-www.hf.space" onload="resizeIframe(this)" height="0"></iframe>
- 
-<script>
-function resizeIframe(iframe) {
-  iframe.height = iframe.contentWindow.document.documentElement.scrollHeight + 'px';
-}
-</script>
+
+<h2>嵌入外部网页示例</h2>
+
+<iframe src="https://mixtao-www.hf.space" title="Mixtao Website" width="800" height="600"></iframe>
+
+<p>这里是你网页的其他内容。</p>
+
 </body>
 </html>
