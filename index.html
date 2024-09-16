@@ -1,23 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="UTF-8">
-<title>首页</title>
-<script>
-function autoIframeHeight() {
-    var iframe = document.getElementById('myIframe');
-    try {
-        var bHeight = iframe.contentWindow.document.body.scrollHeight;
-        var dHeight = iframe.contentWindow.document.documentElement.scrollHeight;
-        var height = Math.max(bHeight, dHeight);
-        iframe.height = height;
-    } catch (ex) {
-        // cross-domain iframe security error
-    }
-}
-</script>
+    <title>首页</title>
+    <script>
+        function resizeIframe(iframe) {
+            iframe.height = iframe.contentWindow.document.documentElement.scrollHeight + 'px';
+        }
+    </script>
 </head>
-<body onload="autoIframeHeight()">
-<iframe id="myIframe" onload="autoIframeHeight()" src="https://mixtao-www.hf.space" width="100%" frameborder="0"></iframe>
+<body>
+    <iframe id="myIframe" onload="resizeIframe(this)" src="https://mixtao-www.hf.space" width="100%" frameborder="0"></iframe>
 </body>
 </html>
