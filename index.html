@@ -1,23 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>首页</title>
-    <style>
-        /* 这里可以添加CSS样式 */
-        iframe {
-            border: none;
-            width: 100%;
-            height: 100%;
-        }
-    </style>
+<meta charset="UTF-8">
+<title>首页</title>
+<script>
+function autoIframeHeight() {
+    var iframe = document.getElementById('myIframe');
+    try {
+        var bHeight = iframe.contentWindow.document.body.scrollHeight;
+        var dHeight = iframe.contentWindow.document.documentElement.scrollHeight;
+        var height = Math.max(bHeight, dHeight);
+        iframe.height = height;
+    } catch (ex) {
+        // cross-domain iframe security error
+    }
+}
+</script>
 </head>
-<body>
-    <iframe
-	src="https://mixtao-www.hf.space"
-	frameborder="0"
-></iframe>
-
+<body onload="autoIframeHeight()">
+<iframe id="myIframe" onload="autoIframeHeight()" src="https://mixtao-www.hf.space" width="100%" frameborder="0"></iframe>
 </body>
 </html>
