@@ -2,11 +2,19 @@
 <html>
 <head>
     <title>首页</title>
-    <script>
-        function resizeIframe(iframe) {
-            iframe.height = iframe.contentWindow.document.documentElement.scrollHeight + 'px';
-        }
-    </script>
+<script type="text/javascript">
+    var observer = new MutationObserver(function(mutations) {
+        var iframe = document.getElementById('myiframe');
+        iframe.style.height = iframe.contentWindow.document.body.scrollHeight + 'px';
+    });
+    
+    var config = { attributes: true, childList: true, characterData: true };
+    var target = document.getElementById('myiframe').contentDocument.body;
+    
+    observer.observe(target, config);
+</script>
+
+<iframe id="myiframe" src="https://mixtao-www.hf.space"></iframe>
 </head>
 <body>
     <iframe id="myIframe" onload="resizeIframe(this)" src="https://mixtao-www.hf.space" width="100%" frameborder="0"></iframe>
