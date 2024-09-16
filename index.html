@@ -5,7 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>首页</title>
 <style>
-  /* 设置 iframe 的样式 */
+  body {
+    margin: 0; /* 清除 body 的默认边距 */
+    font-family: Arial, sans-serif; /* 设置页面字体 */
+  }
+
   iframe {
     width: 100%; /* 让 iframe 宽度占满父容器 */
     height: 100vh; /* 设置 iframe 高度为视口高度 */
@@ -14,8 +18,18 @@
 </style>
 </head>
 <body>
-
-<iframe src="https://mixtao-www.hf.space" title="Mixtao Website"></iframe>
+<iframe id="external-iframe" src="https://mixtao-www.hf.space" title="Mixtao Website"></iframe>
+<script>
+// 监听 iframe 内容加载完成事件
+document.getElementById('external-iframe').onload = function() {
+  // 获取 iframe 内容的背景色
+  var iframeDocument = this.contentWindow.document;
+  var iframeBackgroundColor = window.getComputedStyle(iframeDocument.body).backgroundColor;
+  
+  // 将页面背景色设置为 iframe 内容的背景色
+  document.body.style.backgroundColor = iframeBackgroundColor;
+};
+</script>
 
 </body>
 </html>
