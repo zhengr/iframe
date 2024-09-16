@@ -4,14 +4,49 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>嵌入外部网页示例</title>
+<style>
+  /* Optional: 设置 iframe 的样式 */
+  iframe {
+    width: 100%; /* 让 iframe 宽度占满父容器 */
+    border: none; /* 去掉 iframe 的边框 */
+  }
+</style>
 </head>
 <body>
 
 <h2>嵌入外部网页示例</h2>
 
-<iframe src="https://mixtao-www.hf.space" title="Mixtao Website" width="800" height="600"></iframe>
+<!-- 使用一个容器包裹 iframe -->
+<div id="iframe-container">
+  <iframe id="external-iframe" src="https://mixtao-www.hf.space" title="Mixtao Website" scrolling="no"></iframe>
+</div>
 
-<p>这里是你网页的其他内容。</p>
+<script>
+// 获取 iframe 元素
+var iframe = document.getElementById('external-iframe');
+
+// 监听 iframe 内容加载完成事件
+iframe.onload = function() {
+  // 设置 iframe 的高度为其内容的实际高度
+  var iframeDocument = iframe.contentWindow.document;
+  var iframeContentHeight = Math.max(
+    iframeDocument.body.scrollHeight,
+    iframeDocument.documentElement.scrollHeight,
+    iframeDocument.body.offsetHeight,
+    iframeDocument.documentElement.offsetHeight,
+    iframeDocument.body.clientHeight,
+    iframeDocument.documentElement.clientHeight
+  );
+  iframe.style.height = iframeContentHeight + 'px';
+};
+
+// Optional: 监听窗口大小变化事件，动态调整 iframe 高度
+window.addEventListener('resize', function() {
+  iframe.style.height = 'auto'; // 先重置高度
+  var iframeContentHeight = iframe.contentWindow.document.documentElement.scrollHeight;
+  iframe.style.height = iframeContentHeight + 'px'; // 设置为新的内容高度
+});
+</script>
 
 </body>
 </html>
